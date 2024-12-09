@@ -21,7 +21,7 @@ export const validarUsuario = async(req, resp)=>{
 }
 
 export const validarToken =(req, resp, next)=>{
-    let token_usuario = req.headers['authorization'].split(" ")[1];
+    let token_usuario = req.headers['authorization']?.split(" ")[1];
     if(!token_usuario)
         return resp.status(403).json({msg:"Token es requerido"})
     let decoded = jwt.verify(token_usuario,process.env.SECRET,(error,decoded)=>{
